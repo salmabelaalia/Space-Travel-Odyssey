@@ -1,165 +1,141 @@
-﻿User Stories : 
-Epic: User Authentication & Session Management
+﻿.
 
+🌌 Tourisme Spatial – Application de Réservation Interactive
 
-User Story 1: Fake User Login
+Projet Frontend • JavaScript ES6+ • TailwindCSS • LocalStorage • GitHub Pages
 
-Description : En tant qu'utilisateur, je veux me connecter en utilisant un simple formulaire d'email et de mot de passe afin d'accéder aux fonctionnalités personnalisées, même si l'authentification est simulée sur le front-end.
-Critères d'Acceptation :
-* Un formulaire de login est disponible sur la page Account/Login.
-* Le formulaire accepte un email et un password (aucune validation backend requise).
-* Lors de la submission, les user credentials sont sauvegardés dans le localStorage pour simuler une connexion réussie.
-* Un session state (ex: isLoggedIn: true, username) est stocké dans le localStorage.
-* L'utilisateur est redirigé vers la home page ou son dashboard après s'être "logged in".
+🚀 1. Présentation du Projet
 
+L’objectif de ce projet est de transformer le site existant de Tourisme Spatial en une application de réservation dynamique, moderne et responsive.
+Le tout est réalisé uniquement en Frontend, avec JavaScript Vanilla, et un système de stockage local via localStorage.
 
-User Story 2: Session State & Logout
+🎯 2. Objectifs Principaux
 
-Description : En tant qu'utilisateur connecté, je veux que ma session soit mémorisée lors des page refreshes et que je puise me déconnecter afin que mon compte semble sécurisé.
-Critères d'Acceptation :
-* L'application vérifie le localStorage au page load pour déterminer si un user est logged in.
-* Le header du site affiche le name/email de l'utilisateur quand il est logged in.
-* Un bouton "Logout" est visible dans le header quand l'utilisateur est logged in.
-* Cliquer sur "Logout" efface la session du localStorage et met à jour l'UI.
-Epic: Booking Creation & Management
+Convertir un site statique en application interactive
 
+Implémenter un système d’authentification simulé
 
-User Story 3: Dynamic Booking Form
+Créer un formulaire de réservation intelligent et dynamique
 
-Description : En tant qu'utilisateur, je veux un smart booking form qui s'adapte en fonction de ma destination et de mon package choisis afin de ne voir que les options pertinentes.
-Critères d'Acceptation :
-* Le formulaire est peuplé avec les destinations et packages d'un fichier data.json local.
-* La sélection d'une destination met à jour les packages disponibles.
-* Les form fields sont show/hide dynamiquement (ex: un field "Suit Size" n'apparaît que pour les packages incluant un moonwalk).
-* Une section existe pour ajouter les details de multiple passengers, avec un bouton pour ajouter dynamiquement plus de passenger input sets.
+Gérer tout le cycle CRUD des réservations
 
+Générer et permettre l'impression de billets
 
-User Story 4: Live Price Calculation & Extras
+Fournir une expérience utilisateur fluide, moderne et responsive
 
-Description : En tant qu'utilisateur, je veux voir le total price se mettre à jour en real-time lors de mes selections et ajouts d'extras afin de comprendre immédiatement les implications financières.
-Critères d'Acceptation :
-* Le base price change quand l'utilisateur sélectionne une destination ou un package différent.
-* Les optional extras (insurance, photo pack, etc.) ont leurs prices clairement listées.
-* Le total price est recalculé instantanément à chaque modification de la destination, du package, du number of passengers ou des extras.
-* Le final price est clairement displayé avant la submission.
+🧩 3. Fonctionnalités Clés
+🔐 Authentification & Sessions
 
+Login simulé (email + mot de passe)
 
-User Story 5: Client-Side Form Validation
+Session persistante dans localStorage
 
-Description : En tant qu'utilisateur, je veux des validation messages clairs et inline lorsque je remplis incorrectement le booking form afin de pouvoir corriger mes erreurs avant de submit.
-Critères d'Acceptation :
-* Les required fields sont validés (ex: name, email).
-* Le email format est validé en utilisant un regex pattern.
-* Le phone number format est validé en utilisant un regex pattern.
-* La date selection est restreinte aux future dates et within un booking window de 30 jours.
-* Les inline error messages apparaissent à côté des invalid fields.
-* Le formulaire ne peut être submitted que lorsque tous les validation errors sont résolus.
+Affichage dynamique du profil utilisateur
 
+Bouton Logout + suppression session
 
-User Story 6: Booking Persistence (Create)
+🛰️ Réservation Dynamique
 
-Description : En tant qu'utilisateur, je veux que ma booking complétée soit saved afin de pouvoir la view ou manage plus tard.
-Critères d'Acceptation :
-* Après une successful form validation, les booking data sont saved dans le localStorage.
-* Chaque booking se voit attribuer un unique ID.
-* Si l'user n'est pas logged in, il est prompted à se login ou à continuer en tant que "guest", et la booking est tout de même saved.
-* Après le saving, l'user reçoit une success confirmation et est redirecté vers sa page "My Bookings" ou la ticket page.
+Formulaire piloté par data.json
 
+Mise à jour automatique des packages selon la destination
 
-Epic: Booking CRUD Interface
+Champs intelligents (affichage conditionnel)
 
+Support multi-passagers (Ajout / suppression dynamique)
 
-User Story 7: View My Bookings
+💸 Calcul du Prix en Temps Réel
 
-Description : En tant qu'utilisateur, je veux voir une liste de toutes mes reservations passées et à venir sur une page "My Bookings".
-Critères d'Acceptation :
-* La page "My Bookings" fetch et display toutes les bookings liées au current user (ou guest session) depuis le localStorage.
-* Chaque booking dans la liste show les key information: Destination, Date et Total Price.
-* La liste est visuellement clear et responsive.
+Prix de base selon destination + package
 
+Extras optionnels (assurance, photos…)
 
-User Story 8: Edit an Existing Booking
+Total recalculé instantanément
 
-Description : En tant qu'utilisateur, je veux edit les détails d'une booking existante à partir de ma liste.
-Critères d'Acceptation :
-* Chaque booking dans la liste "My Bookings" a un bouton "Edit".
-* Cliquer sur "Edit" navigate vers le booking form avec tous les fields pre-filled avec les existing data.
-* Le formulaire est updated avec le live pricing et la validation, fonctionnant de la même manière que lors de la creation.
-* La submission du edited form save la booking updated (sous le même unique ID) dans le localStorage.
+Affichage clair et mis à jour en continu
 
+🛠️ Gestion Complète des Réservations (CRUD)
 
-User Story 9: Cancel a Booking
+Create → Ajouter une réservation
 
-Description : En tant qu'utilisateur, je veux cancel une booking, avec une confirmation step pour éviter une accidental deletion.
-Critères d'Acceptation :
-* Chaque booking dans la liste "My Bookings" a un bouton "Cancel" ou "Delete".
-* Cliquer sur le bouton trigger une confirmation dialog (ex: window.confirm ou une custom modal).
-* Si confirmé, la booking est removed du localStorage.
-* La liste "My Bookings" update immédiatement pour refléter la cancellation.
+Read → Voir toutes ses réservations
 
+Update → Modifier une réservation
 
-Epic: Ticket Generation
+Delete → Supprimer une réservation
 
+Identifiants uniques automatiques
 
-User Story 10: Generate a Printable Ticket
+Stockage via localStorage
 
-Description : En tant qu'utilisateur, après avoir fait ou view une booking, je veux voir un well-formatted, printable ticket.
-Critères d'Acceptation :
-* Un bouton "View Ticket" est disponible depuis la booking confirmation page et la liste "My Bookings".
-* Cliquer dessus lead à une dedicated printable ticket page ou ouvre une printable modal.
-* Le ticket display tous les relevant booking details dans un clean, easy-to-read layout.
-* La page include un bouton "Print" qui trigger le browser's print dialog en utilisant window.print().
-* Un print stylesheet est applied pour garantir que le ticket print correctly sur du A4/Letter paper, en cachant la navigation et les autres non-essential UI elements.
+🧪 Validation Client-Side
 
+Vérification des champs requis
 
-Epic: Enhanced Discovery & Usability
+Email valide (regex)
 
+Numéro de téléphone valide
 
-User Story 11: Search & Filter on Destinations Page
+Dates limitées aux dates futures et fenêtre de 30 jours
 
-Description : En tant qu'utilisateur, je veux search et filter la liste des destinations pour trouver facilement un trip qui match mes interests et mon budget.
-Critères d'Acceptation :
-* Les données des destinations sont chargées dynamiquement depuis un fichier JSON
-* Une search bar permet de filter les destinations par name, type ou description.
-* Des filter controls (dropdowns, sliders) permettent de filter par : type (planet, moon), price range, duration range et distance range.
-* La liste update dynamiquement pendant que l'user type ou adjust les filters.
+Messages d’erreurs inline
 
+🎫 Génération & Impression des Tickets
 
-User Story 12: Pagination on Destinations Page
+Template ticket professionnel
 
-Description : En tant qu'utilisateur, je veux browse les destinations par manageable chunks afin que la page ne soit pas overwhelming.
-Critères d'Acceptation :
-* Les données sont fetched depuis un fichier JSON externe
-* Un maximum de 4 destinations cards sont displayed par page.
-* Des boutons Previous/Next et/ou des page number links sont présents pour la navigation.
-* La Pagination fonctionne conjointement avec la search et les filters, ne paginant qu'à travers les filtered results.
+Version imprimable adaptée
 
+Fonctionnalité d’impression native navigateur
 
-User Story 13: Accessible and Performant Experience
+📱 UX & Performance
 
-Description : En tant qu'utilisateur, y compris ceux avec des disabilities ou sur mobile devices, je veux que le website soit fast, easy à naviguer et accessible.
-Critères d'Acceptation :
-* Tous les interactive elements sont navigables en utilisant un keyboard.
-* Toutes les images ont des descriptive alt tags.
-* Les semantic HTML tags (<header>, <main>, <section>, <nav>) sont utilisées appropriately.
-* Le site utilise une mobile-first CSS approach avec des rem/em units pour la scalability.
-* Les images sont optimized (compressed, modern formats) pour garantir un fast loading.
+Responsive mobile-first
 
+Accessibilité améliorée (ARIA, contrastes…)
 
-Epic: Bonus Features
+Load optimisé
 
+Interface moderne avec TailwindCSS
 
-User Story B1: QR Code on Ticket
+🛠️ 4. Stack Technique
+Technologie	Utilisation
+🌐 HTML5	Structure des pages
+🎨 TailwindCSS	Interface moderne et responsive
+⚡ JavaScript ES6+	Logique, interactions, formulaires dynamiques
+🗂 localStorage	Stockage des users & bookings
+🚀 GitHub Pages	Déploiement final du site
+📚 5. User Stories (Résumé)
+🔐 Epic: User Authentication
 
-Description : En tant qu'utilisateur, je veux que mon printable ticket inclue un QR code contenant le booking ID pour un easy check-in.
-Critères d'Acceptation :
-* Le printable ticket include un generated QR code.
-* Le QR code encode un unique identifier pour la booking (ex: le booking ID ou une URL).
+US1 — Fake Login
 
+US2 — Session persistante + Logout
 
-User Story B2: Export Booking as PDF
+🛰️ Epic: Booking Management
 
-Description : En tant qu'utilisateur, je veux download mon ticket en tant que PDF file pour un offline storage.
-Critères d'Acceptation :
-* Un bouton "Download PDF" est disponible sur la ticket page.
-* Cliquer sur le bouton generate et download un PDF file du ticket en utilisant une client-side library.
+US3 — Formulaire adaptatif
+
+US4 — Calcul de prix dynamique
+
+US5 — Validation complète
+
+US6 — Persistance des réservations
+
+📊 6. Planification du Projet
+
+💡 Livrables Jour 1
+
+Repository GitHub
+
+Planification détaillée (Roadmap + Story Points)
+
+💡 Livrables Jour 5
+
+Site final (GitHub Pages)
+
+Code source complet
+
+README final
+
+Dossier / planning du projet
