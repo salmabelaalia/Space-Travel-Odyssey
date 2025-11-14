@@ -1,470 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - SpaceVoyager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              "space-dark": "#0a0a18",
-              "space-blue": "#1a1a2e",
-              "space-purple": "#16213e",
-              "neon-blue": "#0ea5e9",
-              "neon-purple": "#8b5cf6",
-              "neon-cyan": "#06b6d4",
-            },
-            fontFamily: {
-              orbitron: ["Orbitron", "sans-serif"],
-              exo: ["Exo 2", "sans-serif"],
-            },
-          },
-        },
-      };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'space-dark': '#0a0a18',
+                        'space-blue': '#1a1a2e',
+                        'space-purple': '#16213e',
+                        'neon-blue': '#0ea5e9',
+                        'neon-purple': '#8b5cf6',
+                        'neon-cyan': '#06b6d4',
+                    },
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'exo': ['Exo 2', 'sans-serif'],
+                    },
+                }
+            }
+        }
     </script>
     <style>
-      body {
-        background: linear-gradient(to bottom, #0a0a18, #1a1a2e, #16213e);
-        background-attachment: fixed;
-      }
-
-      .star {
-        position: absolute;
-        background-color: white;
-        border-radius: 50%;
-        animation: twinkle 5s infinite;
-      }
-
-      @keyframes twinkle {
-        0%,
-        100% {
-          opacity: 0.2;
+        body {
+            background: linear-gradient(to bottom, #0a0a18, #1a1a2e, #16213e);
+            background-attachment: fixed;
         }
-        50% {
-          opacity: 1;
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
         }
-      }
 
-      .glow {
-        box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
-      }
+        @keyframes twinkle {
 
-      .text-glow {
-        text-shadow: 0 0 10px rgba(14, 165, 233, 0.7);
-      }
+            0%,
+            100% {
+                opacity: 0.2;
+            }
 
-      .login-card {
-        background: rgba(26, 26, 46, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(14, 165, 233, 0.3);
-        border-radius: 15px;
-      }
+            50% {
+                opacity: 1;
+            }
+        }
 
-      .form-input {
-        background: rgba(22, 33, 62, 0.5);
-        border: 1px solid rgba(14, 165, 233, 0.3);
-        border-radius: 8px;
-        color: white;
-        transition: all 0.3s ease;
-      }
+        .glow {
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+        }
 
-      .form-input:focus {
-        border-color: rgba(14, 165, 233, 0.7);
-        box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
-        outline: none;
-      }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(14, 165, 233, 0.7);
+        }
 
-      .nav-link {
-        position: relative;
-      }
+        .login-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 15px;
+        }
 
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(to right, #0ea5e9, #8b5cf6);
-        transition: width 0.3s ease;
-      }
+        .form-input {
+            background: rgba(22, 33, 62, 0.5);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
 
-      .nav-link:hover::after {
-        width: 100%;
-      }
+        .form-input:focus {
+            border-color: rgba(14, 165, 233, 0.7);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+            outline: none;
+        }
 
-      .btn-primary {
-        background: linear-gradient(to right, #0ea5e9, #8b5cf6);
-        transition: all 0.3s ease;
-      }
+        .nav-link {
+            position: relative;
+        }
 
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
-      }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #0ea5e9, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+        }
     </style>
-  </head>
-  <body class="text-white font-exo min-h-screen">
+</head>
+
+<body class="text-white font-exo min-h-screen">
     <!-- Stars Background -->
     <div id="stars-container"></div>
 
     <!-- Navigation -->
-    <nav
-      class="bg-space-dark/80 backdrop-blur-md border-b border-neon-blue/20 sticky top-0 z-50"
-    >
-      <div
-        class="container mx-auto px-4 py-3 flex justify-between items-center"
-      >
-        <div class="flex items-center space-x-3">
-          <div
-            class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center glow"
-          >
-            <i class="fas fa-rocket text-white"></i>
-          </div>
-          <a href="index.html" class="font-orbitron text-xl font-bold text-glow"
-            >SpaceVoyager</a
-          >
-        </div>
+    <nav class="bg-space-dark/80 backdrop-blur-md border-b border-neon-blue/20 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center glow">
+                    <i class="fas fa-rocket text-white"></i>
+                </div>
+                <a href="index.html" class="font-orbitron text-xl font-bold text-glow">SpaceVoyager</a>
+            </div>
 
-        <div class="hidden md:flex space-x-8">
-          <a
-            href="index.html"
-            class="nav-link hover:text-neon-blue transition-colors"
-            >Home</a
-          >
-          <a
-            href="destinations.html"
-            class="nav-link hover:text-neon-blue transition-colors"
-            >Destinations</a
-          >
-          <a
-            href="booking.html"
-            class="nav-link hover:text-neon-blue transition-colors"
-            >Booking</a
-          >
-          <a
-            href="about.html"
-            class="nav-link hover:text-neon-blue transition-colors"
-            >About</a
-          >
-          <a
-            href="login.html"
-            class="nav-link hover:text-neon-blue transition-colors text-neon-blue"
-            >Login</a
-          >
-        </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link hover:text-neon-blue transition-colors">Home</a>
+                <a href="destinations.html" class="nav-link hover:text-neon-blue transition-colors">Destinations</a>
+                <a href="booking.html" class="nav-link hover:text-neon-blue transition-colors">Booking</a>
+                <a href="about.html" class="nav-link hover:text-neon-blue transition-colors">About</a>
+                <a href="login.html" class="nav-link hover:text-neon-blue transition-colors text-neon-blue">Login</a>
+            </div>
 
-        <div class="md:hidden">
-          <button class="text-white focus:outline-none">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 relative z-10">
-      <div class="max-w-md mx-auto py-12">
-        <!-- Login Card -->
-        <div class="login-card p-8">
-          <div class="text-center mb-8">
-            <div
-              class="w-20 h-20 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center mx-auto mb-4 glow"
-            >
-              <i class="fas fa-user-astronaut text-white text-2xl"></i>
-            </div>
-            <h1 class="font-orbitron text-3xl mb-2 text-glow">
-              SpaceVoyager Login
-            </h1>
-            <p class="text-gray-300">Access your account and journey details</p>
-          </div>
+        <div class="max-w-md mx-auto py-12">
+            <!-- Login Card -->
+            <div class="login-card p-8">
+                <div class="text-center mb-8">
+                    <div
+                        class="w-20 h-20 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center mx-auto mb-4 glow">
+                        <i class="fas fa-user-astronaut text-white text-2xl"></i>
+                    </div>
+                    <h1 class="font-orbitron text-3xl mb-2 text-glow">SpaceVoyager Login</h1>
+                    <p class="text-gray-300">Access your account and journey details</p>
+                </div>
 
-          <form class="space-y-6">
-            <div>
-              <label class="block text-gray-300 mb-2">Email Address</label>
-              <input
-                type="email"
-                class="form-input w-full px-4 py-3"
-                placeholder="Enter your email"
-                id="email"
-              />
-            </div>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-gray-300 mb-2">Email Address</label>
+                        <input type="email" class="form-input w-full px-4 py-3" placeholder="Enter your email"
+                            id="email">
+                    </div>
 
-            <div>
-              <label class="block text-gray-300 mb-2">Password</label>
-              <input
-                type="password"
-                class="form-input w-full px-4 py-3"
-                placeholder="Enter your password"
-                id="password"
-              />
-            </div>
+                    <div>
+                        <label class="block text-gray-300 mb-2">Password</label>
+                        <input type="password" class="form-input w-full px-4 py-3" placeholder="Enter your password"
+                            id="password">
+                    </div>
 
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input type="checkbox" id="remember" class="mr-2" />
-                <label for="remember" class="text-gray-300 text-sm"
-                  >Remember me</label
-                >
-              </div>
-              <a href="#" class="text-neon-blue text-sm hover:underline"
-                >Forgot password?</a
-              >
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="remember" class="mr-2">
+                            <label for="remember" class="text-gray-300 text-sm">Remember me</label>
+                        </div>
+                        <a href="#" class="text-neon-blue text-sm hover:underline">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-primary text-white w-full py-3 rounded-lg font-bold glow">
+                        Login to Account
+                    </button>
+                </form>
+
+                <div class="mt-6 pt-6 border-t border-neon-blue/20">
+                    <p class="text-gray-400 text-center">
+                        Don't have an account?
+                        <a href="#" class="text-neon-blue hover:underline" id="showSignup">Sign up now</a>
+                    </p>
+                </div>
             </div>
 
-            <button
-              type="submit"
-              class="btn-primary text-white w-full py-3 rounded-lg font-bold glow"
-            >
-              Login to Account
-            </button>
-          </form>
+            <!-- Features -->
+            <div class="mt-12 grid grid-cols-1 gap-6">
+                <div class="flex items-start">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-cyan to-neon-blue flex items-center justify-center mr-4 mt-1">
+                        <i class="fas fa-ticket-alt text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-orbitron text-lg mb-1">Manage Your Bookings</h3>
+                        <p class="text-gray-300 text-sm">View and modify your upcoming space journeys</p>
+                    </div>
+                </div>
 
-          <div class="mt-6 pt-6 border-t border-neon-blue/20">
-            <p class="text-gray-400 text-center">
-              Don't have an account?
-              <a href="#" class="text-neon-blue hover:underline" id="showSignup"
-                >Sign up now</a
-              >
-            </p>
-          </div>
+                <div class="flex items-start">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-purple to-pink-500 flex items-center justify-center mr-4 mt-1">
+                        <i class="fas fa-user-check text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-orbitron text-lg mb-1">Training Progress</h3>
+                        <p class="text-gray-300 text-sm">Track your space travel preparation status</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mr-4 mt-1">
+                        <i class="fas fa-star text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-orbitron text-lg mb-1">Voyager Rewards</h3>
+                        <p class="text-gray-300 text-sm">Earn points and unlock exclusive benefits</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Features -->
-        <div class="mt-12 grid grid-cols-1 gap-6">
-          <div class="flex items-start">
-            <div
-              class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-cyan to-neon-blue flex items-center justify-center mr-4 mt-1"
-            >
-              <i class="fas fa-ticket-alt text-white"></i>
-            </div>
-            <div>
-              <h3 class="font-orbitron text-lg mb-1">Manage Your Bookings</h3>
-              <p class="text-gray-300 text-sm">
-                View and modify your upcoming space journeys
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <div
-              class="w-10 h-10 rounded-full bg-gradient-to-r from-neon-purple to-pink-500 flex items-center justify-center mr-4 mt-1"
-            >
-              <i class="fas fa-user-check text-white"></i>
-            </div>
-            <div>
-              <h3 class="font-orbitron text-lg mb-1">Training Progress</h3>
-              <p class="text-gray-300 text-sm">
-                Track your space travel preparation status
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start">
-            <div
-              class="w-10 h-10 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center mr-4 mt-1"
-            >
-              <i class="fas fa-star text-white"></i>
-            </div>
-            <div>
-              <h3 class="font-orbitron text-lg mb-1">Voyager Rewards</h3>
-              <p class="text-gray-300 text-sm">
-                Earn points and unlock exclusive benefits
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </main>
 
     <!-- Footer -->
-    <footer
-      class="bg-space-dark border-t border-neon-blue/20 py-8 mt-12 relative z-10"
-    >
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-4 md:mb-0">
-            <div class="flex items-center space-x-2 mb-2">
-              <div
-                class="w-8 h-8 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center"
-              >
-                <i class="fas fa-rocket text-white text-sm"></i>
-              </div>
-              <span class="font-orbitron text-lg">SpaceVoyager</span>
-            </div>
-            <p class="text-gray-400 text-sm">
-              © 2023 SpaceVoyager. All rights reserved.
-            </p>
-          </div>
+    <footer class="bg-space-dark border-t border-neon-blue/20 py-8 mt-12 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-sm"></i>
+                        </div>
+                        <span class="font-orbitron text-lg">SpaceVoyager</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2023 SpaceVoyager. All rights reserved.</p>
+                </div>
 
-          <div class="flex space-x-6 mb-4 md:mb-0">
-            <a
-              href="#"
-              class="text-gray-400 hover:text-neon-blue transition-colors text-xl"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="#"
-              class="text-gray-400 hover:text-neon-blue transition-colors text-xl"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a
-              href="#"
-              class="text-gray-400 hover:text-neon-blue transition-colors text-xl"
-            >
-              <i class="fab fa-facebook"></i>
-            </a>
-          </div>
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-neon-blue transition-colors text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-neon-blue transition-colors text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-neon-blue transition-colors text-xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </footer>
 
     <script>
-      // Create stars background
-      function createStars() {
-        const container = document.getElementById("stars-container");
-        const starCount = 150;
+        // Create stars background
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const starCount = 150;
 
-        for (let i = 0; i < starCount; i++) {
-          const star = document.createElement("div");
-          star.classList.add("star");
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
 
-          const size = Math.random() * 2 + 1;
-          star.style.width = `${size}px`;
-          star.style.height = `${size}px`;
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
 
-          star.style.left = `${Math.random() * 100}%`;
-          star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
 
-          star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
 
-          container.appendChild(star);
-        }
-      }
-
-      // Fake user database - STRICT CHECK
-      const fakeUsers = [
-        {
-          id: "user_1",
-          email: "astro@space.com",
-          password: "space123",
-          name: "Astro Navigator",
-          joinDate: "2024-01-15",
-          membership: "Explorer",
-        },
-        {
-          id: "user_2",
-          email: "nova@voyager.com",
-          password: "voyager123",
-          name: "Nova Explorer",
-          joinDate: "2024-02-20",
-          membership: "Pioneer",
-        },
-        {
-          id: "user_3",
-          email: "cosmos@travel.com",
-          password: "cosmos123",
-          name: "Cosmos Traveler",
-          joinDate: "2024-03-10",
-          membership: "Adventurer",
-        },
-        {
-          id: "user_4",
-          email: "test@space.com",
-          password: "test123",
-          name: "Test User",
-          joinDate: "2024-01-01",
-          membership: "Explorer",
-        },
-      ];
-
-      document.addEventListener("DOMContentLoaded", function () {
-        createStars();
-
-        const loginForm = document.querySelector("form");
-
-        loginForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-
-          // Validate inputs
-          if (!email || !password) {
-            showMessage("Please fill in all fields", "error");
-            return;
-          }
-
-          // STRICT CHECK: Verify user exists in fake database
-          const user = fakeUsers.find(
-            (u) => u.email === email && u.password === password
-          );
-
-          if (user) {
-            // User exists and credentials are correct - login successful
-            const userSession = {
-              id: user.id,
-              email: user.email,
-              name: user.name,
-              isLoggedIn: true,
-              joinDate: user.joinDate,
-              membership: user.membership,
-              loginTime: new Date().toISOString(),
-            };
-
-            // Save to localStorage
-            localStorage.setItem("currentUser", JSON.stringify(userSession));
-
-            showMessage(`Welcome back, ${user.name}!`, "success");
-
-            // Redirect after short delay
-            setTimeout(() => {
-              window.location.href = "index.html";
-            }, 1500);
-          } else {
-            // STRICT CHECK: Check if email exists but password is wrong
-            const emailExists = fakeUsers.some((u) => u.email === email);
-
-            if (emailExists) {
-              showMessage("Incorrect password. Please try again.", "error");
-            } else {
-              // Email not found in fake users - STRICT: No automatic account creation
-              showMessage("Account not found. Please sign up first.", "error");
+                container.appendChild(star);
             }
-          }
+        }
+
+        // Fake user database - STRICT CHECK
+        const fakeUsers = [
+            {
+                id: 1,
+                name: "zineddine mohamed amine",
+                firstName: "mohamed-amine",
+                lastName: "zineddine",
+                email: "amin@gmail.com",
+                phone: "+212 7 71 04 00 04",
+                password: 'amin',
+                joinDate: "2023-01-15",
+                membership: "Premium"
+            },
+            {
+                id: 2,
+                name: "Sophie Martin",
+                firstName: "Sophie",
+                lastName: "Martin",
+                email: "sophie.martin@email.com",
+                phone: "+33 1 34 56 78 90",
+                password: 'amin',
+                joinDate: "2023-02-20",
+                membership: "Standard"
+            },
+            {
+                id: 3,
+                name: "Thomas Leroy",
+                firstName: "Thomas",
+                lastName: "Leroy",
+                email: "thomas.leroy@email.com",
+                phone: "+33 1 45 67 89 01",
+                password: 'amin',
+                joinDate: "2023-03-10",
+                membership: "Premium"
+            },
+            {
+                id: 4,
+                name: "Marie Lambert",
+                firstName: "Marie",
+                lastName: "Lambert",
+                email: "marie.lambert@email.com",
+                phone: "+33 1 56 78 90 12",
+                password: 'amin',
+                joinDate: "2023-04-05",
+                membership: "Standard"
+            },
+            {
+                id: 5,
+                name: "Jean Moreau",
+                firstName: "Jean",
+                lastName: "Moreau",
+                email: "jean.moreau@email.com",
+                phone: "+33 1 67 89 01 23",
+                password: 'amin',
+                joinDate: "2023-05-12",
+                membership: "VIP"
+            }
+        ];
+
+        // Show signup information - CORRIGÉE
+        function showSignupInfo() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'login-message p-4 rounded-lg mb-4 bg-blue-500/20 text-blue-400 border border-blue-500/30';
+            messageDiv.innerHTML = `
+        <h4 class="font-orbitron mb-2">Available Test Accounts:</h4>
+        <div class="text-sm space-y-1">
+            <div><strong>amin@gmail.com</strong> / amin</div>
+            <div><strong>sophie.martin@email.com</strong> / amin</div>
+            <div><strong>thomas.leroy@email.com</strong> / amin</div>
+            <div><strong>marie.lambert@email.com</strong> / amin</div>
+            <div><strong>jean.moreau@email.com</strong> / amin</div>
+        </div>
+        <p class="text-xs mt-2 text-gray-300">Use one of these test accounts to login</p>
+    `;
+
+            const form = document.querySelector('form');
+            const existingMessage = document.querySelector('.login-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            form.parentNode.insertBefore(messageDiv, form);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            createStars();
+
+            const loginForm = document.querySelector('form');
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Validate inputs
+                if (!email || !password) {
+                    showMessage('Please fill in all fields', 'error');
+                    return;
+                }
+
+                // STRICT CHECK: Verify user exists in fake database
+                const user = fakeUsers.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    // User exists and credentials are correct - login successful
+                    const userSession = {
+                        id: user.id,
+                        email: user.email,
+                        name: user.name,
+                        isLoggedIn: true,
+                        joinDate: user.joinDate,
+                        membership: user.membership,
+                        loginTime: new Date().toISOString()
+                    };
+
+                    // Save to localStorage
+                    localStorage.setItem('currentUser', JSON.stringify(userSession));
+
+                    showMessage(`Welcome back, ${user.name}!`, 'success');
+
+                    // Redirect after short delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+
+                } else {
+                    // STRICT CHECK: Check if email exists but password is wrong
+                    const emailExists = fakeUsers.some(u => u.email === email);
+
+                    if (emailExists) {
+                        showMessage('Incorrect password. Please try again.', 'error');
+                    } else {
+                        // Email not found in fake users - STRICT: No automatic account creation
+                        showMessage('Account not found. Please sign up first.', 'error');
+                    }
+                }
+            });
+
+            // Show signup info when clicked
+            document.getElementById('showSignup').addEventListener('click', function (e) {
+                e.preventDefault();
+                showSignupInfo();
+            });
+
+            // Check if already logged in
+            checkAuthStatus();
         });
 
-        // Show signup info when clicked
-        document
-          .getElementById("showSignup")
-          .addEventListener("click", function (e) {
-            e.preventDefault();
-            showSignupInfo();
-          });
-
-        // Check if already logged in
-        checkAuthStatus();
-      });
-
-      // Show signup information
-      function showSignupInfo() {
-        const messageDiv = document.createElement("div");
-        messageDiv.className =
-          "login-message p-4 rounded-lg mb-4 bg-blue-500/20 text-blue-400 border border-blue-500/30";
-        messageDiv.innerHTML = `
+        // Show signup information
+        function showSignupInfo() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'login-message p-4 rounded-lg mb-4 bg-blue-500/20 text-blue-400 border border-blue-500/30';
+            messageDiv.innerHTML = `
                 <h4 class="font-orbitron mb-2">Available Test Accounts:</h4>
                 <div class="text-sm space-y-1">
                     <div><strong>astro@space.com</strong> / space123</div>
@@ -475,50 +449,48 @@
                 <p class="text-xs mt-2 text-gray-300">Use one of these test accounts to login</p>
             `;
 
-        const form = document.querySelector("form");
-        const existingMessage = document.querySelector(".login-message");
-        if (existingMessage) {
-          existingMessage.remove();
-        }
-        form.parentNode.insertBefore(messageDiv, form);
-      }
-
-      // Show message function
-      function showMessage(message, type) {
-        // Remove existing messages
-        const existingMessage = document.querySelector(".login-message");
-        if (existingMessage) {
-          existingMessage.remove();
+            const form = document.querySelector('form');
+            const existingMessage = document.querySelector('.login-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            form.parentNode.insertBefore(messageDiv, form);
         }
 
-        // Create new message element
-        const messageDiv = document.createElement("div");
-        messageDiv.className = `login-message p-4 rounded-lg mb-4 text-center ${
-          type === "success"
-            ? "bg-green-500/20 text-green-400 border border-green-500/30"
-            : "bg-red-500/20 text-red-400 border border-red-500/30"
-        }`;
-        messageDiv.textContent = message;
+        // Show message function
+        function showMessage(message, type) {
+            // Remove existing messages
+            const existingMessage = document.querySelector('.login-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
 
-        // Insert before the form
-        const form = document.querySelector("form");
-        form.parentNode.insertBefore(messageDiv, form);
+            // Create new message element
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `login-message p-4 rounded-lg mb-4 text-center ${type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                'bg-red-500/20 text-red-400 border border-red-500/30'
+                }`;
+            messageDiv.textContent = message;
 
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          if (messageDiv.parentNode) {
-            messageDiv.remove();
-          }
-        }, 5000);
-      }
+            // Insert before the form
+            const form = document.querySelector('form');
+            form.parentNode.insertBefore(messageDiv, form);
 
-      // Check authentication status
-      function checkAuthStatus() {
-        const user = JSON.parse(localStorage.getItem("currentUser"));
-        if (user && user.isLoggedIn) {
-          // Show welcome message and redirect option
-          const loginCard = document.querySelector(".login-card");
-          loginCard.innerHTML = `
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Check authentication status
+        function checkAuthStatus() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.isLoggedIn) {
+                // Show welcome message and redirect option
+                const loginCard = document.querySelector('.login-card');
+                loginCard.innerHTML = `
                     <div class="text-center mb-8">
                         <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-green-700 flex items-center justify-center mx-auto mb-4 glow">
                             <i class="fas fa-check text-white text-2xl"></i>
@@ -547,14 +519,15 @@
                         </div>
                     </div>
                 `;
+            }
         }
-      }
 
-      // Logout function
-      function logout() {
-        localStorage.removeItem("currentUser");
-        location.reload();
-      }
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
     </script>
-  </body>
+</body>
+
 </html>
