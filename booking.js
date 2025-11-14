@@ -9,7 +9,7 @@ const fakeUsers = [
         firstName: "salma",
         lastName: "belaalia",
         email: "salma@gmail.com",
-        phone: "+212 6 71 04 00 04",
+        phone: "+212 6 49 34 98 04",
         password: 'salma',
         joinDate: "2023-01-15",
         membership: "Premium"
@@ -21,7 +21,7 @@ const fakeUsers = [
         lastName: "Martin",
         email: "sophie.martin@email.com",
         phone: "+33 1 34 56 78 90",
-        password: 'amin',
+        password: 'salma',
         joinDate: "2023-02-20",
         membership: "Standard"
     },
@@ -32,7 +32,7 @@ const fakeUsers = [
         lastName: "Leroy",
         email: "thomas.leroy@email.com",
         phone: "+33 1 45 67 89 01",
-        password: 'amin',
+        password: 'salma',
         joinDate: "2023-03-10",
         membership: "Premium"
     },
@@ -43,7 +43,7 @@ const fakeUsers = [
         lastName: "Lambert",
         email: "marie.lambert@email.com",
         phone: "+33 1 56 78 90 12",
-        password: 'amin',
+        password: 'salma',
         joinDate: "2023-04-05",
         membership: "Standard"
     },
@@ -54,7 +54,7 @@ const fakeUsers = [
         lastName: "Moreau",
         email: "jean.moreau@email.com",
         phone: "+33 1 67 89 01 23",
-        password: 'amin',
+        password: 'salma',
         joinDate: "2023-05-12",
         membership: "VIP"
     }
@@ -438,18 +438,18 @@ function setupFormInteractions() {
             },
             additionalPassengers: additionalPassengerData,
             specialRequirements: document.getElementById('special-requirements').value,
-            totalPrice: calculateTotalPrice(),
+            totalPrice: calculTotal(),
             status: 'confirmed',
             createdAt: new Date().toISOString()
         };
 
-        saveBooking(bookingData);
+        save(bookingData);
         alert('Booking confirmed successfully!');
         window.location.href = 'my-bookings.html';
     });
 }
 
-function calculateTotalPrice() {
+function calculTotal() {
     const destinationSelect = document.getElementById('destination-select');
     const accommodationOption = document.querySelector('.accommodation-option.selected');
     const destinationObj = destinations.find(d => d.id === destinationSelect.value);
@@ -471,7 +471,7 @@ function calculateTotalPrice() {
     return destinationPrice + (accommodationPricePerDay * accommodationDays * totalPassengers);
 }
 
-function saveBooking(booking) {
+function save(booking) {
     let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
     bookings.push(booking);
     localStorage.setItem('bookings', JSON.stringify(bookings));
